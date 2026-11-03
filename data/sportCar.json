@@ -1,0 +1,63 @@
+
+[
+  {
+    "id": 1,
+    "name": "Rent Lamborghini Huracan EVO",
+    "slug": "lamborghini-huracan-evo",
+    "image": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80",
+    "badge": "Premium Collection",
+    "oldPrice": "1,800.00",
+    "price": "1,500.00",
+    "weekly": "9,975",
+    "monthly": "38,250",
+    "kmLimit": "250 km limit per day"
+  },
+  {
+    "id": 2,
+    "name": "Rent Ferrari F8 Tributo",
+    "slug": "ferrari-f8-tributo",
+    "image": "https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=800&q=80",
+    "badge": "Exclusive Offer",
+    "oldPrice": "2,200.00",
+    "price": "1,900.00",
+    "weekly": "12,635",
+    "monthly": "48,450",
+    "kmLimit": "250 km limit per day"
+  },
+  {
+    "id": 3,
+    "name": "Rent Porsche 911 Carrera",
+    "slug": "porsche-911-carrera",
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+    "badge": "Best Seller",
+    "oldPrice": "950.00",
+    "price": "800.00",
+    "weekly": "5,320",
+    "monthly": "20,400",
+    "kmLimit": "250 km limit per day"
+  },
+  {
+    "id": 4,
+    "name": "Rent McLaren 720S",
+    "slug": "mclaren-720s",
+    "image": "https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=800&q=80",
+    "badge": "Luxury Collection",
+    "oldPrice": "2,500.00",
+    "price": "2,200.00",
+    "weekly": "14,630",
+    "monthly": "56,100",
+    "kmLimit": "250 km limit per day"
+  },
+  {
+    "id": 5,
+    "name": "Rent Chevrolet Corvette C8",
+    "slug": "chevrolet-corvette-c8",
+    "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80",
+    "badge": "Summer Offer",
+    "oldPrice": "1,200.00",
+    "price": "1,000.00",
+    "weekly": "6,650",
+    "monthly": "25,500",
+    "kmLimit": "250 km limit per day"
+  }
+]

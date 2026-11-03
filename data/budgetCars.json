@@ -1,0 +1,63 @@
+
+[
+  {
+    "id": 1,
+    "name": "Rent Toyota Yaris 2024",
+    "slug": "toyota-yaris-2024",
+    "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80",
+    "badge": "Best Value",
+    "oldPrice": "110.00",
+    "price": "95.00",
+    "weekly": "631.75",
+    "monthly": "2,565",
+    "kmLimit": "250 km limit per day"
+  },
+  {
+    "id": 2,
+    "name": "Rent Nissan Sunny 2024",
+    "slug": "nissan-sunny-2024",
+    "image": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=800&q=80",
+    "badge": "Summer Offer",
+    "oldPrice": "120.00",
+    "price": "100.00",
+    "weekly": "665",
+    "monthly": "2,700",
+    "kmLimit": "250 km limit per day"
+  },
+  {
+    "id": 3,
+    "name": "Rent Kia Picanto 2024",
+    "slug": "kia-picanto-2024",
+    "image": "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80",
+    "badge": "Budget Friendly",
+    "oldPrice": "95.00",
+    "price": "80.00",
+    "weekly": "532",
+    "monthly": "2,160",
+    "kmLimit": "250 km limit per day"
+  },
+  {
+    "id": 4,
+    "name": "Rent Mitsubishi Attrage 2024",
+    "slug": "mitsubishi-attrage-2024",
+    "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80",
+    "badge": "Special Offer",
+    "oldPrice": "115.00",
+    "price": "90.00",
+    "weekly": "598.50",
+    "monthly": "2,430",
+    "kmLimit": "250 km limit per day"
+  },
+  {
+    "id": 5,
+    "name": "Rent Hyundai Accent 2024",
+    "slug": "hyundai-accent-2024",
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+    "badge": "Popular Choice",
+    "oldPrice": "125.00",
+    "price": "105.00",
+    "weekly": "698.25",
+    "monthly": "2,835",
+    "kmLimit": "250 km limit per day"
+  }
+]

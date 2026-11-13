@@ -9,6 +9,8 @@ export type ButtonVariant = "primary" | "secondary" | "outline";
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   href?: string;
+  target?: string;
+  rel?: string;
   children: ReactNode;
   className?: string;
 }
@@ -26,6 +28,8 @@ export default function Button({
   type = "button",
   variant = "primary",
   href,
+  target,
+  rel,
   onClick,
   disabled = false,
   className = "",
@@ -39,7 +43,12 @@ export default function Button({
 
   if (href) {
     return (
-      <Link href={href} className={combinedClasses}>
+      <Link
+        href={href}
+        className={combinedClasses}
+        target={target}
+        rel={target === "_blank" ? rel || "noopener noreferrer" : rel}
+      >
         {children}
       </Link>
     );

@@ -5,27 +5,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaWhatsapp } from "react-icons/fa";
 import { LuPhoneCall, LuMailOpen } from "react-icons/lu";
+import Button from "@/components/ui/Button";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Why 777 Car Rent", href: "/why-777-car-rent" },
   { name: "About Us", href: "/about" },
   { name: "Fleet", href: "/fleet" },
-  { name: "Industries", href: "/industries" },
   { name: "Contact", href: "/contact" },
 ];
-
-// Agar aapki pehle se button class bani hui hai (jaise "btn-primary"),
-// to is variable ki value usi class se replace kar do.
-const btnClass =
-  "inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-[#D41331] to-[#890018] px-5 py-2.5 text-base font-medium text-white shadow-md transition hover:brightness-110";
 
 export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-neutral-900">
-      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between gap-6 px-5 lg:px-8">
+    <header className="sticky top-0 z-50 w-full bg-neutral-900 border-b border-white/5">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 lg:px-8">
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image
@@ -46,8 +40,8 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`whitespace-nowrap text-base font-medium transition-colors ${
-                  isActive ? "text-[#D41331]" : "text-white hover:text-[#D41331]"
+                className={`whitespace-nowrap text-sm font-semibold transition-colors ${
+                  isActive ? "text-[#D41331]" : "text-white/90 hover:text-[#D41331]"
                 }`}
               >
                 {link.name}
@@ -57,29 +51,40 @@ export default function Header() {
         </nav>
 
         {/* Action Buttons */}
-        <div className="hidden items-center gap-3 xl:flex">
-          <a href="tel:+971000000000" className={btnClass}>
-            <LuPhoneCall className="h-5 w-5" />
+        <div className="hidden items-center gap-2.5 xl:flex">
+          <Button
+            href="tel:+971509954626"
+            variant="primary"
+            className="px-4 py-2 text-xs font-bold uppercase tracking-wider"
+          >
+            <LuPhoneCall className="h-4 w-4" />
             Call Now
-          </a>
-          <a
-            href="https://wa.me/971000000000"
+          </Button>
+
+          <Button
+            href="https://wa.me/971509954626"
             target="_blank"
             rel="noopener noreferrer"
-            className={btnClass}
+            variant="primary"
+            className="px-4 py-2 text-xs font-bold uppercase tracking-wider"
           >
-            <FaWhatsapp className="h-5 w-5" />
+            <FaWhatsapp className="h-4 w-4" />
             WhatsApp
-          </a>
-          <a href="mailto:info@777drive.com" className={btnClass}>
-            <LuMailOpen className="h-5 w-5" />
+          </Button>
+
+          <Button
+            href="mailto:info@777drive.ae"
+            variant="outline"
+            className="px-4 py-2 text-xs font-bold uppercase tracking-wider hover:border-[#D41331] hover:bg-[#D41331]"
+          >
+            <LuMailOpen className="h-4 w-4" />
             Email
-          </a>
+          </Button>
         </div>
 
         {/* Mobile Navigation */}
         <details className="group relative xl:hidden">
-          <summary className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-white/20 text-2xl text-white">
+          <summary className="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg border border-white/20 text-xl text-white">
             <span className="group-open:hidden">☰</span>
             <span className="hidden group-open:inline">✕</span>
           </summary>
@@ -89,7 +94,7 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`rounded-lg px-4 py-3 text-base font-medium hover:bg-white/5 ${
+                className={`rounded-lg px-4 py-2.5 text-sm font-semibold hover:bg-white/5 ${
                   pathname === link.href ? "text-[#D41331]" : "text-white"
                 }`}
               >
@@ -97,16 +102,30 @@ export default function Header() {
               </Link>
             ))}
 
-            <div className="mt-3 flex flex-col gap-2">
-              <a href="tel:+971000000000" className={btnClass}>
-                <LuPhoneCall className="h-5 w-5" /> Call Now
-              </a>
-              <a href="https://wa.me/971000000000" className={btnClass}>
-                <FaWhatsapp className="h-5 w-5" /> WhatsApp
-              </a>
-              <a href="mailto:info@777drive.com" className={btnClass}>
-                <LuMailOpen className="h-5 w-5" /> Email
-              </a>
+            <div className="mt-3 flex flex-col gap-2 pt-2 border-t border-white/10">
+              <Button
+                href="tel:+971509954626"
+                variant="primary"
+                className="w-full text-xs font-bold uppercase tracking-wider py-2.5"
+              >
+                <LuPhoneCall className="h-4 w-4" /> Call Now
+              </Button>
+              <Button
+                href="https://wa.me/971509954626"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="primary"
+                className="w-full text-xs font-bold uppercase tracking-wider py-2.5"
+              >
+                <FaWhatsapp className="h-4 w-4" /> WhatsApp
+              </Button>
+              <Button
+                href="mailto:info@777drive.ae"
+                variant="outline"
+                className="w-full text-xs font-bold uppercase tracking-wider py-2.5 hover:border-[#D41331] hover:bg-[#D41331]"
+              >
+                <LuMailOpen className="h-4 w-4" /> Email
+              </Button>
             </div>
           </nav>
         </details>

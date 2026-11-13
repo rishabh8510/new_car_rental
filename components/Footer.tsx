@@ -44,7 +44,7 @@ export default function Footer() {
     <footer className="bg-[#111111] text-gray-300">
 
       {/* Top Section */}
-      <div className="max-w-full mx-auto px-6 lg:px-30 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
         {/* Logo & Description */}
         <div>
@@ -145,34 +145,32 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800 py-4 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4 px-8 lg:px-30">
+      <div className="border-t border-gray-800 py-4 text-xs text-gray-500">
+        <div className="mx-auto flex max-w-7xl flex-col sm:flex-row items-center justify-between gap-4 px-5 lg:px-8">
+          <div>
+            © {currentYear} 777 Drive Rent a Car. All Rights Reserved.
+          </div>
 
-        <div>
-          © {currentYear} 777 Drive Rent a Car. All Rights Reserved.
+          {/* Social Media */}
+          <div className="flex items-center gap-4">
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+
+              return (
+                <Link
+                  key={social.label}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="text-gray-400 hover:text-[#D41331] transition-colors duration-300"
+                >
+                  <Icon size={20} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
-
-        {/* Social Media */}
-        <div className="flex items-center gap-4">
-
-          {socialLinks.map((social) => {
-            const Icon = social.icon;
-
-            return (
-              <Link
-                key={social.label}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                className="text-gray-400 hover:text-[#D41331] transition-colors duration-300"
-              >
-                <Icon size={20} />
-              </Link>
-            );
-          })}
-
-        </div>
-
       </div>
 
     </footer>

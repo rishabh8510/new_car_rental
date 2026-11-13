@@ -13,6 +13,7 @@ import {
 } from "react-icons/lu";
 import Button from "./Button";
 import CarModal from "./CarModal";
+import WhatsAppModal from "./WhatsAppModal";
 
 export type Car = {
   id: number | string;
@@ -56,6 +57,7 @@ export default function CarCard({
   const [activeIdx, setActiveIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWaOpen, setIsWaOpen] = useState(false);
 
   const images: string[] =
     car.images && car.images.length > 0 ? car.images : [car.image];
@@ -265,19 +267,18 @@ export default function CarCard({
             >
               <LuPhone className="h-4.5 w-4.5" />
             </a>
-            <a
-              href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(
-                `Hi, I want to rent ${car.name.trim()}`
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
               aria-label="WhatsApp"
-              onClick={(e) => e.stopPropagation()}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-200 text-neutral-700 transition hover:border-green-500 hover:bg-green-50 hover:text-green-600"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsWaOpen(true);
+              }}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-200 text-neutral-700 transition hover:border-green-500 hover:bg-green-50 hover:text-green-600 cursor-pointer"
               title="WhatsApp Chat"
             >
               <FaWhatsapp className="h-5 w-5" />
-            </a>
+            </button>
             <Button
               type="button"
               variant="primary"
@@ -297,6 +298,17 @@ export default function CarCard({
         onClose={() => setIsModalOpen(false)}
         phone={phone}
         whatsapp={whatsapp}
+      />
+
+      {/* WhatsApp Modal */}
+      <WhatsAppModal
+        isOpen={isWaOpen}
+        onClose={() => setIsWaOpen(false)}
+        phone={phone}
+        whatsappNumber={whatsapp}
+        carName={car.name}
+        carPrice={car.price}
+        carImage={currentImage}
       />
     </>
   );

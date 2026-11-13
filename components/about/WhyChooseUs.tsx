@@ -188,7 +188,7 @@ const WhyChooseUs = () => {
 
             {/* Car: capsule se chaudi, dono side bahar nikli hui */}
             <Image
-              src="/images/why-choose-car-img.png"
+              src="/images/mg-5.png"
               alt="Red car"
               width={640}
               height={300}

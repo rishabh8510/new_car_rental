@@ -5,21 +5,24 @@ import FleetBanner from "@/components/FleetBanner";
 import WhyRentCar from "@/components/home/WhyRentCar";
 import FlexibleRentalOptions from "@/components/home/FlexibleRentalOptions";
 import DocumentsRequired from "@/components/home/DocumentsRequired";
-import NewCars from "@/components/home/NewCars";
-import SportsCars from "@/components/home/SportsCars";
+// import NewCars from "@/components/home/NewCars";
+// import SportsCars from "@/components/home/SportsCars";
+import Testimonial from "@/components/home/Testimonials";
 
 export default function Home() {
   return (
-<>
-<HeroSection />
-<CategorySection />
-<BudgetCars />
-<NewCars />
-<SportsCars />
-<FleetBanner />
-<WhyRentCar />
-<FlexibleRentalOptions />
-<DocumentsRequired />
-</>
+    <>
+      <HeroSection />
+      <CategorySection />
+      <BudgetCars />
+      {/* NewCars and SportsCars are temporarily hidden - uncomment below to restore */}
+      {/* <NewCars /> */}
+      {/* <SportsCars /> */}
+      <FleetBanner />
+      <WhyRentCar />
+      <FlexibleRentalOptions />
+      <DocumentsRequired />
+      <Testimonial />
+    </>
   );
 }

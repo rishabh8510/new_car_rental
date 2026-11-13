@@ -4,11 +4,11 @@ import Link from "next/link";
 import type { IconType } from "react-icons";
 import {
   LuCircleDollarSign,
-  LuMountain,
-  LuSparkles,
-  LuStar,
-  LuSun,
-  LuZap,
+  // LuMountain,
+  // LuSparkles,
+  // LuStar,
+  // LuSun,
+  // LuZap,
 } from "react-icons/lu";
 import { MdArrowOutward } from "react-icons/md";
 
@@ -22,54 +22,54 @@ type Category = {
 };
 
 const categories: Category[] = [
-  {
-    title: "Sports Car Rental",
-    cars: 12,
-    price: "750.00",
-    href: "/fleet/sports-cars",
-    image: "/images/sport.avif",
-    icon: LuZap,
-  },
-  {
-    title: "Luxury Cars",
-    cars: 46,
-    price: "210.00",
-    href: "/fleet/luxury-cars",
-    image: "/images/luxury.png",
-    icon: LuStar,
-  },
-  {
-    title: "SUV Car Rental",
-    cars: 17,
-    price: "195.00",
-    href: "/fleet/suv",
-    image: "/images/suv.jpg",
-    icon: LuMountain,
-  },
-  {
-    title: "Convertible Cars",
-    cars: 12,
-    price: "360.00",
-    href: "/fleet/convertible-cars",
-    image: "/images/convertible.jpg",
-    icon: LuSun,
-  },
+  // {
+  //   title: "Sports Car Rental",
+  //   cars: 12,
+  //   price: "750.00",
+  //   href: "/fleet?category=sports",
+  //   image: "/images/sport.avif",
+  //   icon: LuZap,
+  // },
+  // {
+  //   title: "Luxury Cars",
+  //   cars: 46,
+  //   price: "210.00",
+  //   href: "/fleet",
+  //   image: "/images/luxury.png",
+  //   icon: LuStar,
+  // },
+  // {
+  //   title: "SUV Car Rental",
+  //   cars: 17,
+  //   price: "195.00",
+  //   href: "/fleet",
+  //   image: "/images/suv.jpg",
+  //   icon: LuMountain,
+  // },
+  // {
+  //   title: "Convertible Cars",
+  //   cars: 12,
+  //   price: "360.00",
+  //   href: "/fleet",
+  //   image: "/images/convertible.jpg",
+  //   icon: LuSun,
+  // },
   {
     title: "Budget Cars",
     cars: 13,
     price: "115.00",
-    href: "/fleet/budget-cars",
+    href: "/fleet?category=budget",
     image: "/images/budget.png",
     icon: LuCircleDollarSign,
   },
-  {
-    title: "New Cars Arrived",
-    cars: 50,
-    price: "115.00",
-    href: "/fleet/new-arrivals",
-    image: "/images/new.avif",
-    icon: LuSparkles,
-  },
+  // {
+  //   title: "New Cars Arrived",
+  //   cars: 50,
+  //   price: "115.00",
+  //   href: "/fleet?category=new",
+  //   image: "/images/new.avif",
+  //   icon: LuSparkles,
+  // },
 ];
 
 export default function CategorySection() {

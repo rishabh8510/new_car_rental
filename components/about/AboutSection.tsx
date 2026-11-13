@@ -60,7 +60,7 @@ const AboutSection = () => {
           <div className="absolute bottom-0 right-0 h-[62%] w-[52%] rounded-t-full border border-gray-300 bg-white p-1.5 sm:p-2">
             <div className="relative h-full w-full overflow-hidden rounded-t-full">
               <Image
-                src="/images/about-section-second.jpeg"
+                src="/images/another.jpeg"
                 alt="Car rental agent"
                 fill
                 sizes="(min-width: 1024px) 290px, (min-width: 768px) 270px, (min-width: 640px) 240px, 165px"

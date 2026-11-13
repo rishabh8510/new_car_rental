@@ -16,6 +16,23 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  async rewrites() {
+    return [
+      {
+        source: "/fleet/budget-cars",
+        destination: "/fleet?category=budget",
+      },
+      {
+        source: "/fleet/sports-cars",
+        destination: "/fleet?category=sports",
+      },
+      {
+        source: "/fleet/new-arrivals",
+        destination: "/fleet?category=new",
+      },
+    ];
+  },
+
   turbopack: {
     rules: {
       "*.css": {

@@ -45,9 +45,12 @@
     "id": 2,
     "name": "Nissan Kicks 2025",
     "slug": "nissan-kicks-2025",
-    "image": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=800&q=80",
+    "image": "/images/nissan-kicks/kicks-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=800&q=80"
+      "/images/nissan-kicks/kicks-1.jpg",
+      "/images/nissan-kicks/kicks-2.jpg",
+      "/images/nissan-kicks/kicks-3.jpg",
+      "/images/nissan-kicks/kicks-4.jpg"
     ],
     "badge": "Popular Choice",
     "oldPrice": "180",
@@ -158,9 +161,12 @@
     "id": 5,
     "name": "Nissan Sunny 2024-2023",
     "slug": "nissan-sunny-2024-2023",
-    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+    "image": "/images/nissan-sunny/sunny-1.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+      "/images/nissan-sunny/sunny-1.jpg",
+      "/images/nissan-sunny/sunny-2.jpg",
+      "/images/nissan-sunny/sunny-3.jpg",
+      "/images/nissan-sunny/sunny-4.jpg"
     ],
     "badge": "Budget Friendly",
     "oldPrice": "110",

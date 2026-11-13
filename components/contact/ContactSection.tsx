@@ -174,7 +174,7 @@ const ContactSection = () => {
                 <div>
                   <p className="text-xs uppercase tracking-wider text-gray-400">Address</p>
                   <p className="text-base font-semibold leading-relaxed text-white">
-                    Business Bay - Dubai - United Arab Emirates
+                    133 46th Street, Hor Al Anz, Deira, Dubai, UAE
                   </p>
                 </div>
               </div>

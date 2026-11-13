@@ -4,10 +4,10 @@ const Asterisk = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-const MAP_QUERY = "Business Bay, Dubai, United Arab Emirates";
+const MAP_QUERY = "133 46th Street, Hor Al Anz, Deira, Dubai, UAE";
 const MAP_SRC = `https://www.google.com/maps?q=${encodeURIComponent(
   MAP_QUERY
-)}&z=14&output=embed`;
+)}&z=15&output=embed`;
 
 const LocationSection = () => {
   return (
@@ -25,7 +25,7 @@ const LocationSection = () => {
             How to Reach Our Location
           </h2>
           <p className="mt-3 text-base text-gray-500 sm:text-lg">
-            Visit our main office located conveniently in Business Bay, Dubai.
+            Visit our office located at 133 46th Street, Hor Al Anz, Deira, Dubai, UAE.
           </p>
         </div>
 

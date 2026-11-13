@@ -1,178 +1,153 @@
-import {
-  MdOutlineMail,
-} from "react-icons/md";
-
-import {
-  FiPhone,
-} from "react-icons/fi";
-
-import {
-  PiBuildingOffice,
-} from "react-icons/pi";
-
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { MdOutlineMail } from "react-icons/md";
+import { FiPhone } from "react-icons/fi";
+import { PiBuildingOffice } from "react-icons/pi";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 import Image from "next/image";
 import Link from "next/link";
 
 const currentYear = 2026;
 
+const pages = [
+  "About us",
+  "Fleet",
+  // "Corporate Rentals",
+  // "Why 777 Car Rent",
+  // "Blogs",
+  "Contact us",
+];
+
+const services = [
+  "Monthly Car Rentals",
+  "Annual Car Rentals",
+  "Corporate Fleet Solutions",
+  "SME Commercial Leasing",
+  "Long-Term Vehicle Leasing",
+];
+
+const socialLinks = [
+  {
+    icon: FaFacebookF,
+    url: "https://www.facebook.com/777driverentacar/",
+    label: "Facebook",
+  },
+  {
+    icon: FaInstagram,
+    url: "https://www.instagram.com/777driverentacar/",
+    label: "Instagram",
+  },
+  {
+    icon: FaLinkedinIn,
+    url: "https://www.linkedin.com/company/777driverentacar/",
+    label: "LinkedIn",
+  },
+];
+
+const linkClass =
+  "cursor-pointer text-base text-gray-400 transition-colors duration-300 hover:text-[#D41331]";
+const headingClass = "mb-6 text-lg font-semibold text-white";
+
 export default function Footer() {
-  const socialLinks = [
-    {
-      icon: FaFacebookF,
-      url: "https://www.facebook.com/777driverentacar/",
-      label: "Facebook",
-    },
-    {
-      icon: FaInstagram,
-      url: "https://www.instagram.com/777driverentacar/",
-      label: "Instagram",
-    },
-    {
-      icon: FaLinkedinIn,
-      url: "https://www.linkedin.com/company/777driverentacar/",
-      label: "LinkedIn",
-    },
-  ];
-
   return (
-    <footer className="bg-[#111111] text-gray-300">
-
-      {/* Top Section */}
-      <div className="mx-auto max-w-7xl px-5 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-
-        {/* Logo & Description */}
-        <div>
-          <div className="flex items-center gap-3">
+    <footer className="relative overflow-hidden bg-[#141414] text-gray-400">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Top Section */}
+        <div className="grid grid-cols-1 gap-10 pb-12 pt-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] lg:gap-8">
+          {/* Logo & Description */}
+          <div className="sm:col-span-2 lg:col-span-1 lg:pr-8">
             <Image
               src="/logo.svg"
               alt="Car Rental Logo"
               width={160}
               height={80}
-              className="h-20 w-auto object-contain mb-2"
+              className="h-16 w-auto object-contain sm:h-20"
             />
+
+            <p className="mt-5 max-w-md text-sm leading-7 text-gray-400 sm:text-base">
+              777 Drive Rent a Car is a Dubai-based vehicle rental company
+              specializing in long-term mobility solutions for corporates,
+              SMEs, and commercial clients. We provide flexible monthly and
+              annual rental contracts designed to support business growth
+              without the burden of vehicle ownership.
+            </p>
           </div>
 
-          <p className="text-sm leading-relaxed text-gray-400">
-            777 Drive Rent a Car is a Dubai-based vehicle rental company
-            specializing in long-term mobility solutions for corporates,
-            SMEs, and commercial clients. We provide flexible monthly
-            and annual rental contracts designed to support business
-            growth without the burden of vehicle ownership.
-          </p>
-        </div>
-
-        {/* Pages */}
-        <div>
-          <h3 className="text-white text-sm font-semibold mb-4 uppercase">
-            Pages
-          </h3>
-
-          <ul className="space-y-2 text-sm text-gray-400">
-            <li className="transition hover:text-[#D41331] cursor-pointer">About us</li>
-            <li className="transition hover:text-[#D41331] cursor-pointer">Fleet</li>
-            <li className="transition hover:text-[#D41331] cursor-pointer">Corporate Rentals</li>
-            <li className="transition hover:text-[#D41331] cursor-pointer">Why 777 Car Rent</li>
-            <li className="transition hover:text-[#D41331] cursor-pointer">Blogs</li>
-            <li className="transition hover:text-[#D41331] cursor-pointer">Contact us</li>
-          </ul>
-        </div>
-
-        {/* Our Services */}
-        <div>
-          <h3 className="text-white text-sm font-semibold mb-4 uppercase">
-            Our Services
-          </h3>
-
-          <ul className="space-y-2 text-sm text-gray-400">
-            <li className="transition hover:text-[#D41331] cursor-pointer">Monthly Car Rentals</li>
-            <li className="transition hover:text-[#D41331] cursor-pointer">Annual Car Rentals</li>
-            <li className="transition hover:text-[#D41331] cursor-pointer">Corporate Fleet Solutions</li>
-            <li className="transition hover:text-[#D41331] cursor-pointer">SME Commercial Leasing</li>
-            <li className="transition hover:text-[#D41331] cursor-pointer">Long-Term Vehicle Leasing</li>
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div>
-          <h3 className="text-white text-sm font-semibold mb-4 uppercase">
-            Contact
-          </h3>
-
-          <ul className="space-y-3 text-sm text-gray-400">
-
-            <li>
-              <div className="flex items-center gap-2 text-white">
-                <MdOutlineMail className="text-lg text-[#D41331]" />
-                <span>Email</span>
-              </div>
-
-              <p className="mt-1 text-gray-400">
-                info@777drive.ae
-              </p>
-            </li>
-
-            <li>
-              <div className="flex items-center gap-2 text-white">
-                <FiPhone className="text-lg text-[#D41331]" />
-                <span>Phone</span>
-              </div>
-
-              <p className="mt-1 text-gray-400">
-                +97 1509954626
-              </p>
-            </li>
-
-            <li>
-              <div className="flex items-center gap-2 text-white">
-                <PiBuildingOffice className="text-lg text-[#D41331]" />
-                <span>Office</span>
-              </div>
-
-              <p className="mt-1 text-gray-400">
-                Business Bay - Dubai - United Arab Emirates
-              </p>
-            </li>
-
-          </ul>
-        </div>
-
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800 py-4 text-xs text-gray-500">
-        <div className="mx-auto flex max-w-7xl flex-col sm:flex-row items-center justify-between gap-4 px-5 lg:px-8">
+          {/* Pages */}
           <div>
-            © {currentYear} 777 Drive Rent a Car. All Rights Reserved.
+            <h3 className={headingClass}>Pages</h3>
+            <ul className="space-y-4">
+              {pages.map((item) => (
+                <li key={item} className={linkClass}>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Social Media */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
+          {/* Our Services */}
+          <div>
+            <h3 className={headingClass}>Our Services</h3>
+            <ul className="space-y-4">
+              {services.map((item) => (
+                <li key={item} className={linkClass}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              return (
-                <Link
-                  key={social.label}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="text-gray-400 hover:text-[#D41331] transition-colors duration-300"
-                >
-                  <Icon size={20} />
-                </Link>
-              );
-            })}
+          {/* Follow us */}
+          <div>
+            <h3 className={headingClass}>Follow us</h3>
+            <ul className="space-y-4">
+              {socialLinks.map((social) => (
+                <li key={social.label}>
+                  <Link
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className={linkClass}
+                  >
+                    {social.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
 
+        {/* Contact Row - single line, centered */}
+        <div className="flex flex-col items-center justify-center gap-4 border-t border-white/10 py-6 text-sm text-white sm:text-base lg:flex-row lg:flex-wrap lg:gap-x-12">
+          <div className="flex items-center gap-3 text-center">
+            <PiBuildingOffice className="shrink-0 text-xl text-[#D41331]" />
+            <span>133 46th Street, Hor Al Anz, Deira, Dubai, UAE</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <FiPhone className="shrink-0 text-xl text-[#D41331]" />
+            <span>+97 1509954626</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <MdOutlineMail className="shrink-0 text-xl text-[#D41331]" />
+            <span>info@777drive.ae</span>
+          </div>
+        </div>
+
+        {/* Copyright - centered */}
+        <div className="pb-8 text-center text-sm text-gray-400">
+          © {currentYear} 777 Drive Rent a Car. All Rights Reserved.
+        </div>
+
+        {/* Big faded brand text */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none h-[8vw] select-none overflow-hidden whitespace-nowrap text-center xl:h-[110px]"
+        >
+          <span className="block text-[17vw] font-medium uppercase leading-none tracking-tight text-[#222222] xl:text-[220px]">
+            777 Drive
+          </span>
+        </div>
+      </div>
     </footer>
   );
 }

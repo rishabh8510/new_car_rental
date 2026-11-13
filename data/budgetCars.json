@@ -45,12 +45,16 @@
     "id": 2,
     "name": "Nissan Kicks 2025",
     "slug": "nissan-kicks-2025",
-    "image": "/images/nissan-kicks/kicks-1.jpg",
+    "image": "/images/nissan-kicks/front-left-side-47.avif",
     "images": [
-      "/images/nissan-kicks/kicks-1.jpg",
-      "/images/nissan-kicks/kicks-2.jpg",
-      "/images/nissan-kicks/kicks-3.jpg",
-      "/images/nissan-kicks/kicks-4.jpg"
+      "/images/nissan-kicks/front-left-side-47.avif",
+      "/images/nissan-kicks/exterior-image-164.avif",
+      "/images/nissan-kicks/exterior-image-165.avif",
+      "/images/nissan-kicks/exterior-image-166.avif",
+      "/images/nissan-kicks/exterior-image-167.avif",
+      "/images/nissan-kicks/dashboard-59.avif",
+      "/images/nissan-kicks/configuration-selector-knob-140.avif",
+      "/images/nissan-kicks/ambient-lighting-view-181.avif"
     ],
     "badge": "Popular Choice",
     "oldPrice": "180",
@@ -161,12 +165,13 @@
     "id": 5,
     "name": "Nissan Sunny 2024-2023",
     "slug": "nissan-sunny-2024-2023",
-    "image": "/images/nissan-sunny/sunny-1.jpg",
+    "image": "/images/nissan-sunny/نيسان-صني-كومفورت-2023.webp",
     "images": [
-      "/images/nissan-sunny/sunny-1.jpg",
-      "/images/nissan-sunny/sunny-2.jpg",
-      "/images/nissan-sunny/sunny-3.jpg",
-      "/images/nissan-sunny/sunny-4.jpg"
+      "/images/nissan-sunny/نيسان-صني-كومفورت-2023.webp",
+      "/images/nissan-sunny/نيسان-صني.webp",
+      "/images/nissan-sunny/سعر-نيسان-صني.webp",
+      "/images/nissan-sunny/تمويل-نيسان-صني-2023.webp",
+      "/images/nissan-sunny/مميزت-نيسان-صني-2023.webp"
     ],
     "badge": "Budget Friendly",
     "oldPrice": "110",

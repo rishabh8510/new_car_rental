@@ -4,6 +4,7 @@ import { Red_Hat_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 
 const font = Red_Hat_Display({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

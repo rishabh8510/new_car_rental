@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaCar } from "react-icons/fa";
 import { LuPhoneCall, LuMailOpen } from "react-icons/lu";
 import Button from "@/components/ui/Button";
 import WhatsAppModal from "@/components/ui/WhatsAppModal";
@@ -16,13 +16,18 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
 ];
 
+const BOOK_HREF = "/fleet"; // yaha apna booking page ka link daal sakte ho
+
 export default function Header() {
   const pathname = usePathname();
   const [isWaOpen, setIsWaOpen] = useState(false);
 
+  const roundBtn =
+    "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-white text-white transition-colors hover:border-[#D41331] hover:text-[#D41331]";
+
   return (
     <>
-      <header className="sticky top-0 z-50 w-full bg-neutral-900 border-b border-white/5">
+      <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-neutral-900">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 lg:px-8">
           {/* Logo */}
           <Link href="/" className="shrink-0">
@@ -45,7 +50,9 @@ export default function Header() {
                   key={link.name}
                   href={link.href}
                   className={`whitespace-nowrap text-sm font-semibold transition-colors ${
-                    isActive ? "text-[#D41331]" : "text-white/90 hover:text-[#D41331]"
+                    isActive
+                      ? "text-[#D41331]"
+                      : "text-white/90 hover:text-[#D41331]"
                   }`}
                 >
                   {link.name}
@@ -54,34 +61,40 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Action Buttons */}
-          <div className="hidden items-center gap-2.5 xl:flex">
-            <Button
-              href="tel:+971509954626"
-              variant="primary"
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider"
-            >
-              <LuPhoneCall className="h-4 w-4" />
-              Call Now
-            </Button>
-
-            <Button
+          {/* Action Buttons (Desktop) */}
+          <div className="hidden items-center gap-3 xl:flex">
+            {/* WhatsApp */}
+            <button
               type="button"
-              variant="primary"
+              aria-label="WhatsApp"
               onClick={() => setIsWaOpen(true)}
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#4CAF50] text-white transition hover:brightness-110"
             >
-              <FaWhatsapp className="h-4 w-4" />
-              WhatsApp
-            </Button>
+              <FaWhatsapp className="h-6 w-6" />
+            </button>
 
-            <Button
+            {/* Call */}
+            <a href="tel:+971509954626" aria-label="Call" className={roundBtn}>
+              <LuPhoneCall className="h-5 w-5" />
+            </a>
+
+            {/* Email */}
+            <a
               href="mailto:info@777drive.ae"
-              variant="outline"
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider hover:border-[#D41331] hover:bg-[#D41331]"
+              aria-label="Email"
+              className={roundBtn}
             >
-              <LuMailOpen className="h-4 w-4" />
-              Email
+              <LuMailOpen className="h-5 w-5" />
+            </a>
+
+            {/* Book a Car */}
+            <Button
+              href={BOOK_HREF}
+              variant="primary"
+              className="ml-1 px-5 py-2.5 text-sm font-bold"
+            >
+              <FaCar className="h-5 w-5" />
+              Book a Car
             </Button>
           </div>
 
@@ -105,28 +118,39 @@ export default function Header() {
                 </Link>
               ))}
 
-              <div className="mt-3 flex flex-col gap-2 pt-2 border-t border-white/10">
+              <div className="mt-3 flex flex-col gap-3 border-t border-white/10 pt-3">
+                <div className="flex items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    aria-label="WhatsApp"
+                    onClick={() => setIsWaOpen(true)}
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-[#4CAF50] text-white"
+                  >
+                    <FaWhatsapp className="h-6 w-6" />
+                  </button>
+                  <a
+                    href="tel:+971509954626"
+                    aria-label="Call"
+                    className={roundBtn}
+                  >
+                    <LuPhoneCall className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="mailto:info@777drive.ae"
+                    aria-label="Email"
+                    className={roundBtn}
+                  >
+                    <LuMailOpen className="h-5 w-5" />
+                  </a>
+                </div>
+
                 <Button
-                  href="tel:+971509954626"
+                  href={BOOK_HREF}
                   variant="primary"
-                  className="w-full text-xs font-bold uppercase tracking-wider py-2.5"
+                  className="w-full py-2.5 text-sm font-bold"
                 >
-                  <LuPhoneCall className="h-4 w-4" /> Call Now
-                </Button>
-                <Button
-                  type="button"
-                  variant="primary"
-                  onClick={() => setIsWaOpen(true)}
-                  className="w-full text-xs font-bold uppercase tracking-wider py-2.5"
-                >
-                  <FaWhatsapp className="h-4 w-4" /> WhatsApp
-                </Button>
-                <Button
-                  href="mailto:info@777drive.ae"
-                  variant="outline"
-                  className="w-full text-xs font-bold uppercase tracking-wider py-2.5 hover:border-[#D41331] hover:bg-[#D41331]"
-                >
-                  <LuMailOpen className="h-4 w-4" /> Email
+                  <FaCar className="h-5 w-5" />
+                  Book a Car
                 </Button>
               </div>
             </nav>
@@ -135,10 +159,7 @@ export default function Header() {
       </header>
 
       {/* WhatsApp Modal */}
-      <WhatsAppModal
-        isOpen={isWaOpen}
-        onClose={() => setIsWaOpen(false)}
-      />
+      <WhatsAppModal isOpen={isWaOpen} onClose={() => setIsWaOpen(false)} />
     </>
   );
 }

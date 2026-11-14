@@ -23,6 +23,7 @@ import {
   FaCogs,
   FaSuitcase,
 } from "react-icons/fa";
+import Button from "@/components/ui/Button";
 import type { Car } from "./CarCard";
 import WhatsAppModal from "./WhatsAppModal";
 
@@ -462,22 +463,22 @@ function CarModalDialog({
                   <span className="sm:hidden ml-2 font-semibold text-sm">Call Now</span>
                 </a>
 
-                <button
-                  type="button"
+                <Button
+                  variant="green"
                   onClick={() => setIsWaModalOpen(true)}
-                  className="flex h-12 flex-1 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-green-600 to-green-700 px-4 text-sm font-bold text-white shadow-md transition hover:from-green-500 hover:to-green-600 cursor-pointer"
+                  className="h-12 w-full flex-1 rounded-xl font-bold"
                 >
                   <FaWhatsapp className="h-5 w-5" />
                   WhatsApp
-                </button>
+                </Button>
 
-                <button
-                  type="button"
+                <Button
+                  variant="primary"
                   onClick={() => setIsWaModalOpen(true)}
-                  className="flex h-12 flex-1 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D41331] to-[#890018] px-4 text-sm font-bold text-white shadow-md transition hover:opacity-90 cursor-pointer"
+                  className="h-12 w-full flex-1 rounded-xl font-bold"
                 >
                   Book Now
-                </button>
+                </Button>
               </div>
             </div>
           </div>

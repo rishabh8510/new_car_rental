@@ -2,18 +2,17 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { FaRoad, FaWhatsapp } from "react-icons/fa";
-import {
-  LuFlame,
-  LuHeart,
-  LuPhone,
-  LuEye,
-  LuChevronLeft,
-  LuChevronRight,
-} from "react-icons/lu";
-import Button from "./Button";
+import { Archivo } from "next/font/google";
+import { FaWhatsapp } from "react-icons/fa";
+import { LuShieldCheck, LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import Button from "@/components/ui/Button";
 import CarModal from "./CarModal";
 import WhatsAppModal from "./WhatsAppModal";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 export type Car = {
   id: number | string;
@@ -22,6 +21,8 @@ export type Car = {
   image: string;
   images?: string[];
   badge?: string;
+  currency?: string;
+  ac?: string;
   oldPrice?: string;
   price: string;
   weekly: string;
@@ -53,7 +54,6 @@ export default function CarCard({
   whatsapp = "971501234567",
   onView,
 }: CarCardProps) {
-  const [liked, setLiked] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,7 +62,7 @@ export default function CarCard({
   const images: string[] =
     car.images && car.images.length > 0 ? car.images : [car.image];
 
-  // Auto-scroll images in card when not hovered
+  // Auto-scroll images when not hovered
   useEffect(() => {
     if (images.length <= 1 || isHovered) return;
 
@@ -93,12 +93,25 @@ export default function CarCard({
 
   const currentImage = images[activeIdx] || car.image;
 
+  // Sab kuch JSON se: seats · transmission · ac
+  const subtitle = [car.seats, car.transmission, car.ac]
+    .filter(Boolean)
+    .join(" · ");
+
+  const rates = [
+    { label: "Daily", value: car.price },
+    { label: "Weekly", value: car.weekly },
+    { label: "Monthly", value: car.monthly },
+  ];
+
   return (
     <>
-      <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md transition hover:-translate-y-1 hover:border-red-200 hover:shadow-xl">
-        {/* Image Container with Auto-scroll */}
+      <article
+        className={`${archivo.className} group flex h-full flex-col overflow-hidden border-2 border-neutral-400 bg-[#F3F1F2] transition hover:shadow-xl`}
+      >
+        {/* Image */}
         <div
-          className="relative h-56 w-full cursor-pointer overflow-hidden bg-neutral-900"
+          className="relative aspect-[8/5] w-full cursor-pointer overflow-hidden bg-neutral-900"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={handleOpenModal}
@@ -117,176 +130,108 @@ export default function CarCard({
             alt={car.name}
             fill
             sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            className="object-cover"
           />
-
-          {/* Gradient overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
           {/* Badge */}
           {car.badge && (
-            <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#D41331] to-[#890018] px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-white shadow-md">
-              <LuFlame className="h-3.5 w-3.5 text-white" />
+            <span className="absolute left-3 top-3 border border-[#7B1F25] bg-white/95 px-3 py-1.5 text-sm font-medium leading-none text-[#7B1F25]">
               {car.badge}
             </span>
           )}
 
-          {/* Wishlist Button */}
-          <button
-            type="button"
-            aria-label="Add to wishlist"
-            onClick={(e) => {
-              e.stopPropagation();
-              setLiked((v) => !v);
-            }}
-            className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-gray-500 shadow transition hover:bg-white hover:scale-110"
-          >
-            <LuHeart
-              className={`h-4.5 w-4.5 ${liked ? "fill-red-600 text-red-600" : ""}`}
-            />
-          </button>
-
-          {/* Left / Right manual image controls on hover */}
+          {/* Manual image controls on hover */}
           {images.length > 1 && (
             <>
               <button
                 type="button"
                 aria-label="Previous image"
                 onClick={handlePrevImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition hover:bg-[#D41331] group-hover:opacity-100"
+                className="absolute left-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition hover:bg-[#7B2427] group-hover:opacity-100"
               >
-                <LuChevronLeft className="h-4.5 w-4.5" />
+                <LuChevronLeft className="h-5 w-5" />
               </button>
               <button
                 type="button"
                 aria-label="Next image"
                 onClick={handleNextImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition hover:bg-[#D41331] group-hover:opacity-100"
+                className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition hover:bg-[#7B2427] group-hover:opacity-100"
               >
-                <LuChevronRight className="h-4.5 w-4.5" />
+                <LuChevronRight className="h-5 w-5" />
               </button>
             </>
           )}
-
-          {/* Quick View Button on Hover */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-4 py-2 text-xs font-bold text-neutral-900 shadow-lg backdrop-blur-xs transition hover:bg-white">
-              <LuEye className="h-4 w-4 text-[#D41331]" />
-              View Details
-            </span>
-          </div>
-
-          {/* Bottom Indicators */}
-          <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-xs text-white">
-            {images.length > 1 ? (
-              <span className="rounded-full bg-black/60 px-2 py-0.5 text-[11px] font-medium backdrop-blur-xs">
-                {activeIdx + 1} / {images.length}
-              </span>
-            ) : (
-              <span />
-            )}
-
-            {images.length > 1 && (
-              <div className="flex gap-1">
-                {images.slice(0, 5).map((_, i) => (
-                  <span
-                    key={i}
-                    className={`h-1.5 rounded-full transition-all ${
-                      i === activeIdx % 5
-                        ? "w-4 bg-white"
-                        : "w-1.5 bg-white/50"
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Content */}
-        <div className="flex flex-1 flex-col p-4">
+        <div className="flex flex-1 flex-col p-5 sm:p-6">
+          {/* Deposit pill (JSON: car.deposit) */}
+          {car.deposit && (
+            <span className="inline-flex w-fit max-w-full items-center gap-1.5 rounded-full border border-green-300 bg-green-50 px-3 py-1.5 text-xs font-extrabold uppercase tracking-wide text-green-900">
+              <LuShieldCheck className="h-3.5 w-3.5 shrink-0 text-green-700" />
+              <span className="truncate">{car.deposit}</span>
+            </span>
+          )}
+
+          {/* Title */}
           <h3
             onClick={handleOpenModal}
-            className="cursor-pointer truncate text-lg font-bold text-neutral-900 transition hover:text-[#D41331]"
+            className="mt-4 cursor-pointer text-2xl font-extrabold leading-tight tracking-tight text-neutral-900"
           >
             {car.name.trim()}
           </h3>
 
-          {/* Price */}
-          <div className="mt-2 flex min-h-12 flex-col items-end justify-end text-right">
-            {car.oldPrice && (
-              <span className="text-xs font-medium text-gray-400 line-through">
-                AED {car.oldPrice}
-              </span>
-            )}
-            <p className="flex items-baseline gap-1">
-              <span className="text-xs font-bold text-[#D41331]">AED</span>
-              <span className="text-2xl font-extrabold text-[#D41331]">
-                {car.price}
-              </span>
-              <span className="text-xs text-gray-500">/ day</span>
-            </p>
-          </div>
+          {/* Subtitle */}
+          <p className="mt-2.5 text-base text-neutral-500">{subtitle}</p>
 
-          {/* Weekly / Monthly */}
-          <div className="mt-3.5 grid grid-cols-2 gap-2 rounded-xl border border-gray-100 bg-slate-50 p-2.5">
-            <div>
-              <p className="text-[10px] font-medium uppercase text-gray-500">
-                Weekly (-5%)
-              </p>
-              <p className="mt-0.5 text-xs sm:text-sm font-bold text-neutral-900">
-                AED {car.weekly}{" "}
-                <span className="text-[10px] font-normal text-gray-500">/wk</span>
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-medium uppercase text-gray-500">
-                Monthly (-10%)
-              </p>
-              <p className="mt-0.5 text-xs sm:text-sm font-bold text-neutral-900">
-                AED {car.monthly}{" "}
-                <span className="text-[10px] font-normal text-gray-500">/mo</span>
-              </p>
-            </div>
-          </div>
+          {/* Divider */}
+          <div className="mt-4 border-t-[3px] border-neutral-400" />
 
-          {/* KM limit */}
-          <p className="mt-3.5 flex items-center gap-2 border-b border-gray-100 pb-3 text-xs text-gray-500">
-            <FaRoad className="h-3.5 w-3.5 text-gray-400" />
-            {car.kmLimit}
-          </p>
+          {/* Rates */}
+          <div className="flex flex-col">
+            {rates.map((r, i) => (
+              <div
+                key={r.label}
+                className={`flex items-center justify-between py-3 ${
+                  i < rates.length - 1 ? "border-b border-neutral-300" : ""
+                }`}
+              >
+                <span className="text-sm font-medium uppercase tracking-wider text-neutral-500">
+                  {r.label}
+                </span>
+                <span className="text-sm">
+                  <span className="font-bold tracking-wider text-neutral-500">
+                    {r.value}
+                  </span>{" "}
+                  <span className="font-bold text-neutral-900">
+                    {car.currency}
+                  </span>
+                </span>
+              </div>
+            ))}
+          </div>
 
           {/* Actions */}
-          <div className="mt-auto flex items-center gap-2 pt-3.5">
-            <a
-              href={`tel:${phone}`}
-              aria-label="Call"
-              onClick={(e) => e.stopPropagation()}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-200 text-neutral-700 transition hover:border-[#D41331] hover:bg-red-50 hover:text-[#D41331]"
-              title="Call Now"
+          <div className="mt-auto flex items-stretch gap-3 pt-3">
+            <Button
+              variant="primary"
+              onClick={handleOpenModal}
+              className="h-11 flex-1 rounded-none text-base font-bold"
             >
-              <LuPhone className="h-4.5 w-4.5" />
-            </a>
+              Book
+            </Button>
             <button
               type="button"
               aria-label="WhatsApp"
+              title="WhatsApp Chat"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsWaOpen(true);
               }}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-200 text-neutral-700 transition hover:border-green-500 hover:bg-green-50 hover:text-green-600 cursor-pointer"
-              title="WhatsApp Chat"
+              className="flex h-11 w-14 shrink-0 cursor-pointer items-center justify-center bg-[#5BCB6B] text-white transition hover:brightness-110"
             >
-              <FaWhatsapp className="h-5 w-5" />
+              <FaWhatsapp className="h-6 w-6" />
             </button>
-            <Button
-              type="button"
-              variant="primary"
-              onClick={handleOpenModal}
-              className="h-10 flex-1 text-xs font-bold uppercase tracking-wider"
-            >
-              View Details
-            </Button>
           </div>
         </div>
       </article>

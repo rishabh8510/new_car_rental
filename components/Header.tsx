@@ -22,48 +22,17 @@ const BOOK_HREF = "/fleet"; // apna booking page link yaha daalo
 const regions = [
   {
     key: "india",
-    flag: "in",
-    title: "India Customer Support",
-    subtitle: "(For Dubai Bookings from India)",
     whatsapp: { label: "+91 98765 43210", href: "https://wa.me/919876543210" },
     phone: { label: "+91 98765 43210", href: "tel:+919876543210" },
     email: { label: "india@777drive.com", href: "mailto:india@777drive.com" },
   },
   {
     key: "dubai",
-    flag: "ae",
-    title: "Dubai Office",
-    subtitle: "(Local Support in UAE)",
     whatsapp: { label: "+971 509954626", href: "https://wa.me/971509954626" },
     phone: { label: "+971 50 995 4626", href: "tel:+971509954626" },
     email: { label: "info@777drive.ae", href: "mailto:info@777drive.ae" },
   },
 ] as const;
-
-/* ---------- Small flag icons (inline SVG) ---------- */
-function Flag({ code }: { code: "in" | "ae" }) {
-  const cls = "h-5 w-7 shrink-0 rounded-[4px] shadow-sm sm:h-7 sm:w-10 sm:rounded-md";
-
-  if (code === "in") {
-    return (
-      <svg viewBox="0 0 40 28" className={cls} aria-hidden="true">
-        <rect width="40" height="9.34" y="0" fill="#FF9933" />
-        <rect width="40" height="9.34" y="9.33" fill="#FFFFFF" />
-        <rect width="40" height="9.34" y="18.66" fill="#138808" />
-        <circle cx="20" cy="14" r="3.2" fill="none" stroke="#000080" strokeWidth="1" />
-        <circle cx="20" cy="14" r="0.7" fill="#000080" />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 40 28" className={cls} aria-hidden="true">
-      <rect width="40" height="9.34" y="0" fill="#00732F" />
-      <rect width="40" height="9.34" y="9.33" fill="#FFFFFF" />
-      <rect width="40" height="9.34" y="18.66" fill="#000000" />
-      <rect width="11" height="28" x="0" fill="#EF3340" />
-    </svg>
-  );
-}
 
 /* ---------- Single contact item ---------- */
 function ContactItem({
@@ -89,7 +58,7 @@ function ContactItem({
   );
 }
 
-/* ---------- Top bar (no scroll, fully wraps) ---------- */
+/* ---------- Top bar (only numbers + email) ---------- */
 function TopBar() {
   const iconCls = "h-4 w-4 shrink-0 sm:h-[18px] sm:w-[18px]";
 
@@ -101,44 +70,28 @@ function TopBar() {
             {/* divider: horizontal on mobile, vertical on desktop */}
             {i > 0 && (
               <span
-                className="h-px w-full bg-neutral-200 lg:h-9 lg:w-px lg:shrink-0 lg:bg-neutral-300"
+                className="h-px w-full bg-neutral-200 lg:h-6 lg:w-px lg:shrink-0 lg:bg-neutral-300"
                 aria-hidden="true"
               />
             )}
 
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 lg:flex-1">
-              {/* Title block */}
-              <div className="flex items-center gap-2 sm:gap-3">
-                <Flag code={r.flag} />
-                <div className="leading-tight">
-                  <p className="text-[13px] font-bold text-neutral-900 sm:text-sm 2xl:text-base">
-                    {r.title}
-                  </p>
-                  <p className="text-[10px] text-neutral-600 sm:text-[11px] 2xl:text-xs">
-                    {r.subtitle}
-                  </p>
-                </div>
-              </div>
-
-              {/* Contacts */}
-              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 sm:gap-x-5">
-                <ContactItem
-                  href={r.whatsapp.href}
-                  label={r.whatsapp.label}
-                  external
-                  icon={<FaWhatsapp className={`${iconCls} text-[#25D366]`} />}
-                />
-                <ContactItem
-                  href={r.phone.href}
-                  label={r.phone.label}
-                  icon={<LuPhoneCall className={iconCls} />}
-                />
-                <ContactItem
-                  href={r.email.href}
-                  label={r.email.label}
-                  icon={<LuMailOpen className={iconCls} />}
-                />
-              </div>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 sm:gap-x-5 lg:flex-1">
+              <ContactItem
+                href={r.whatsapp.href}
+                label={r.whatsapp.label}
+                external
+                icon={<FaWhatsapp className={`${iconCls} text-[#25D366]`} />}
+              />
+              <ContactItem
+                href={r.phone.href}
+                label={r.phone.label}
+                icon={<LuPhoneCall className={iconCls} />}
+              />
+              <ContactItem
+                href={r.email.href}
+                label={r.email.label}
+                icon={<LuMailOpen className={iconCls} />}
+              />
             </div>
           </Fragment>
         ))}
@@ -152,25 +105,50 @@ export default function Header() {
   const pathname = usePathname();
   const [isWaOpen, setIsWaOpen] = useState(false);
   const [showTop, setShowTop] = useState(true);
+  const [topH, setTopH] = useState(0);
+
+  const topRef = useRef<HTMLDivElement>(null);
   const lastY = useRef(0);
+  const ticking = useRef(false);
+
+  // Top bar ki height measure karo (responsive me change hoti hai)
+  useEffect(() => {
+    const el = topRef.current;
+    if (!el) return;
+
+    const update = () => setTopH(el.offsetHeight);
+    update();
+
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // Scroll down => hide top bar, scroll up => show top bar
   useEffect(() => {
     lastY.current = window.scrollY;
 
-    const onScroll = () => {
+    const handle = () => {
       const y = window.scrollY;
       const delta = y - lastY.current;
 
       if (y < 10) {
-        setShowTop(true); // page ke top par hamesha dikhao
+        setShowTop(true);
       } else if (delta > 6 && y > 80) {
-        setShowTop(false); // niche scroll -> hide
+        setShowTop(false);
       } else if (delta < -6) {
-        setShowTop(true); // upar scroll -> show
+        setShowTop(true);
       }
 
-      lastY.current = y;
+      if (Math.abs(delta) > 6 || y < 10) lastY.current = y;
+      ticking.current = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking.current) {
+        ticking.current = true;
+        requestAnimationFrame(handle);
+      }
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -182,16 +160,19 @@ export default function Header() {
 
   return (
     <>
-      <div className="sticky top-0 z-50 w-full">
-        {/* ===== TOP HEADER (auto hide/show) ===== */}
-        <div
-          className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
-            showTop ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-          }`}
-        >
-          <div className="overflow-hidden">
-            <TopBar />
-          </div>
+      {/*
+        Wrapper ki height kabhi change nahi hoti (no layout shift).
+        Hide karne par sirf translateY se upar slide hota hai => smooth.
+      */}
+      <div
+        className="sticky top-0 z-50 w-full transition-transform duration-300 ease-out will-change-transform"
+        style={{
+          transform: showTop ? "translateY(0)" : `translateY(-${topH}px)`,
+        }}
+      >
+        {/* ===== TOP HEADER ===== */}
+        <div ref={topRef}>
+          <TopBar />
         </div>
 
         {/* ===== BOTTOM HEADER (main) ===== */}
